@@ -1,13 +1,13 @@
-package me.mani.serverframes;
+package me.mani.goldensigns;
 
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import me.mani.serverframes.config.ConfigManager;
-import me.mani.serverframes.config.ServerData;
-import me.mani.serverframes.ping.ServerInfo;
-import me.mani.serverframes.ping.ServerPing;
+import me.mani.goldensigns.config.ConfigManager;
+import me.mani.goldensigns.config.ServerData;
+import me.mani.goldensigns.ping.ServerInfo;
+import me.mani.goldensigns.ping.ServerPing;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

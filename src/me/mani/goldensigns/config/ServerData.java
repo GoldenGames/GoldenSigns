@@ -1,4 +1,4 @@
-package me.mani.serverframes.config;
+package me.mani.goldensigns.config;
 
 public class ServerData {
 	

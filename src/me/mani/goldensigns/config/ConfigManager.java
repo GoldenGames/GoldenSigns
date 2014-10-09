@@ -1,12 +1,12 @@
-package me.mani.serverframes.config;
+package me.mani.goldensigns.config;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.mani.serverframes.SaveFrame;
-import me.mani.serverframes.ServerFrame;
+import me.mani.goldensigns.SaveFrame;
+import me.mani.goldensigns.ServerFrame;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 

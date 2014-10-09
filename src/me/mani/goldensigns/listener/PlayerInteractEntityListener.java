@@ -1,11 +1,11 @@
-package me.mani.serverframes.listener;
+package me.mani.goldensigns.listener;
 
-import me.mani.serverframes.ServerFrame;
-import me.mani.serverframes.ServerFrames;
-import me.mani.serverframes.config.ConfigManager;
-import me.mani.serverframes.config.ServerData;
-import me.mani.serverframes.ping.ServerInfo;
-import me.mani.serverframes.ping.ServerPing;
+import me.mani.goldensigns.ServerFrame;
+import me.mani.goldensigns.ServerFrames;
+import me.mani.goldensigns.config.ConfigManager;
+import me.mani.goldensigns.config.ServerData;
+import me.mani.goldensigns.ping.ServerInfo;
+import me.mani.goldensigns.ping.ServerPing;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;

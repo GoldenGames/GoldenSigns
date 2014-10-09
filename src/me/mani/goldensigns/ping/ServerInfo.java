@@ -1,4 +1,4 @@
-package me.mani.serverframes.ping;
+package me.mani.goldensigns.ping;
 
 public class ServerInfo {
 	

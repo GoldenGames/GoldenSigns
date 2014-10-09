@@ -1,13 +1,13 @@
-package me.mani.serverframes;
+package me.mani.goldensigns;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import me.mani.serverframes.config.ConfigManager;
-import me.mani.serverframes.listener.PlayerInteractEntityListener;
-import me.mani.serverframes.ping.ServerInfo;
+import me.mani.goldensigns.config.ConfigManager;
+import me.mani.goldensigns.listener.PlayerInteractEntityListener;
+import me.mani.goldensigns.ping.ServerInfo;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;

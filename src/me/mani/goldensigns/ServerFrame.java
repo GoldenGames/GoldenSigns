@@ -1,6 +1,6 @@
-package me.mani.serverframes;
+package me.mani.goldensigns;
 
-import me.mani.serverframes.ping.ServerInfo;
+import me.mani.goldensigns.ping.ServerInfo;
 
 import org.bukkit.Material;
 import org.bukkit.entity.ItemFrame;

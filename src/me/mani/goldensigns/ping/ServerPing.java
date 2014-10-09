@@ -1,4 +1,4 @@
-package me.mani.serverframes.ping;
+package me.mani.goldensigns.ping;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -12,7 +12,7 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.logging.Level;
 
-import me.mani.serverframes.config.ServerData;
+import me.mani.goldensigns.config.ServerData;
 
 import org.bukkit.Bukkit;
 
