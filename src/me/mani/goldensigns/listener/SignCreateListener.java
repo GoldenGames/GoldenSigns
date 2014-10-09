@@ -7,6 +7,7 @@ import me.mani.goldensigns.config.ServerData;
 import me.mani.goldensigns.ping.ServerInfo;
 import me.mani.goldensigns.ping.ServerPing;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.ItemFrame;
@@ -41,8 +42,21 @@ public class SignCreateListener implements Listener {
 		ServerPing ping = new ServerPing(serverData);
 		ServerInfo info = new ServerInfo(ping, serverName);
 		
-		ServerSign serverSign = new ServerSign(sign, info);
-		serverSign.update();
+		final ServerSign serverSign = new ServerSign(sign, info);
+		
+		ev.setLine(0, "");
+		ev.setLine(1, "§l§cSetting");
+		ev.setLine(2, "§l§cUp ...");
+		ev.setLine(3, "");
+		
+		Bukkit.getScheduler().runTaskLater(pl, new Runnable() {
+			
+			@Override
+			public void run() {
+				serverSign.update();
+			}
+			
+		}, 1L);
 		
 		pl.addServerSign(serverSign);
 		sign.setMetadata("ServerSign", new FixedMetadataValue(pl, true));

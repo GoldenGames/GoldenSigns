@@ -41,6 +41,11 @@ public class GoldenSigns extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new SignCreateListener(this), this);	
 		Bukkit.getPluginManager().registerEvents(new SignDestroyListener(this), this);
 		
+		// Starte Updating Scheduler
+		
+		UpdatingScheduler updater = new UpdatingScheduler(this);
+		updater.start();
+		
 		// Static Zugriff
 		
 		instance = this;
@@ -81,5 +86,9 @@ public class GoldenSigns extends JavaPlugin {
 				return serverSign;
 		}
 		return null;
+	}
+
+	public List<ServerSign> getAllServerSigns() {
+		return allServerSigns;
 	}
 }

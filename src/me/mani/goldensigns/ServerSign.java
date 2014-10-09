@@ -2,6 +2,7 @@ package me.mani.goldensigns;
 
 import me.mani.goldensigns.ping.ServerInfo;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.ItemFrame;
@@ -39,19 +40,27 @@ public class ServerSign {
 	}
 	
 	public void update() {
-		updateSign(info.update());	
+		updateData();
+		updateSign();
+	}
+	
+	public void updateData() {
+		info.update();
+	}
+	
+	public void updateSign() {
+		updateSign(info);
 	}
 	
 	private void updateSign(ServerInfo info) {	
 		String status = "---";
 		if (info.isOnline() && info.isFull())
-			status = "§eFULL";
+			status = "§e[FULL]";
 		else if (info.isOnline())
-			status = "§aONLINE";
+			status = "§a[ONLINE]";
 		else
-			status = "§cOFFLINE";
-		status = "§7[ " + status + "§7]";
-		
+			status = "§c{OFFLINE]";
+				
 		String motd = info.getMotd().substring(0, 15);
 		
 		String playerStatus = "§a" + info.getOnlinePlayers() + " §7/ §a" + info.getMaxPlayers();
@@ -70,6 +79,6 @@ public class ServerSign {
 		sign.setLine(2, motd);
 		sign.setLine(3, playerStatus);
 		
-		sign.update();		
+		sign.update(true);		
 	}
 }
