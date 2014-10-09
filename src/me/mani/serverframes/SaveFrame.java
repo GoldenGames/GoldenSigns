@@ -13,6 +13,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Rotation;
 import org.bukkit.World;
+import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ItemFrame;
@@ -27,7 +28,7 @@ public class SaveFrame implements ConfigurationSerializable {
 	private int y;
 	private int z;
 	
-	private String rotation;
+	private String facing;
 	
 	public SaveFrame(ServerFrame frame) {
 		
@@ -39,25 +40,24 @@ public class SaveFrame implements ConfigurationSerializable {
 			frame.getItemFrame().getLocation().getBlockX(),
 			frame.getItemFrame().getLocation().getBlockY(),
 			frame.getItemFrame().getLocation().getBlockZ(),
-			frame.getItemFrame().getFacing().
-			frame.getItemFrame().getRotation().name()
+			frame.getItemFrame().getFacing().name()
 		);
 	}
 	
-	public SaveFrame(String serverName, String worldName, int x, int y, int z, String rotation) {
+	public SaveFrame(String serverName, String worldName, int x, int y, int z, String facing) {
 		this.serverName = serverName;
 		this.worldName = worldName;
 		this.x = x;
 		this.y = y;
 		this.z = z;
-		this.rotation = rotation;
+		this.facing = facing;
 	}
 	
 	public ServerFrame toServerFrame() {
 		World world = Bukkit.getWorld(worldName);
 		Location loc = new Location(world, x, y, z);
 		ItemFrame frame = (ItemFrame) world.spawnEntity(loc, EntityType.ITEM_FRAME);
-		frame.setRotation(Rotation.valueOf(rotation));
+		frame.setFacingDirection(BlockFace.valueOf(facing));
 		ServerData data = ConfigManager.getData(serverName);
 		
 		if (data == null)
@@ -75,7 +75,7 @@ public class SaveFrame implements ConfigurationSerializable {
 		saveMap.put("x", x);
 		saveMap.put("y", y);
 		saveMap.put("z", z);
-		saveMap.put("rotation", rotation);
+		saveMap.put("facing", facing);
 		
 		return saveMap;
 	}
@@ -87,7 +87,7 @@ public class SaveFrame implements ConfigurationSerializable {
 			NumberConversions.toInt(saveMap.get("x")),
 			NumberConversions.toInt(saveMap.get("y")),
 			NumberConversions.toInt(saveMap.get("z")),
-			String.valueOf(saveMap.get("rotation"))
+			String.valueOf(saveMap.get("facing"))
 		);
 	}
 	
