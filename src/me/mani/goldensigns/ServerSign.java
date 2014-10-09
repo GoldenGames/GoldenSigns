@@ -59,11 +59,12 @@ public class ServerSign {
 		else if (info.isOnline())
 			status = "§a[ONLINE]";
 		else
-			status = "§c{OFFLINE]";
+			status = "§c[OFFLINE]";
 				
 		String motd = info.getMotd().substring(0, 15);
 		
-		String playerStatus = "§a" + info.getOnlinePlayers() + " §7/ §a" + info.getMaxPlayers();
+		String color = status.substring(0, 2);
+		String playerStatus = color + info.getOnlinePlayers() + " §7/ " + color + info.getMaxPlayers();
 		
 		// Sign Format
 		

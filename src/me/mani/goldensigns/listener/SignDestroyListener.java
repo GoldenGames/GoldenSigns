@@ -36,5 +36,4 @@ public class SignDestroyListener implements Listener {
 		
 		p.sendMessage("§aServerSign removed!");
 	}
-
 }

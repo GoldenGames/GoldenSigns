@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.mani.goldensigns.config.ConfigManager;
+import me.mani.goldensigns.listener.SignClickListener;
 import me.mani.goldensigns.listener.SignCreateListener;
 import me.mani.goldensigns.listener.SignDestroyListener;
 
@@ -40,6 +41,7 @@ public class GoldenSigns extends JavaPlugin {
 		
 		Bukkit.getPluginManager().registerEvents(new SignCreateListener(this), this);	
 		Bukkit.getPluginManager().registerEvents(new SignDestroyListener(this), this);
+		Bukkit.getPluginManager().registerEvents(new SignClickListener(this), this);
 		
 		// Starte Updating Scheduler
 		
