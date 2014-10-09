@@ -4,27 +4,39 @@ public class ServerInfo {
 	
 	private ServerPing ping;
 	
+	private String serverName;
 	private String motd;
 	private int onlinePlayers;
 	private int maxPlayers;
 	private boolean isOnline;
 	
-	public ServerInfo(ServerPing ping) {
+	public ServerInfo(ServerPing ping, String serverName) {
 		this.ping = ping;
 		
+		this.serverName = serverName;
 		this.motd = "-1";
 		this.onlinePlayers = -1;
 		this.maxPlayers = -1;
 		this.isOnline = false;
 	}
 	
-	public void update() {
+	public ServerInfo update() {
 		boolean isOnline = ping.fetchData();
 		
 		this.motd = ping.getMotd();
 		this.onlinePlayers = ping.getPlayersOnline();
 		this.maxPlayers = ping.getMaxPlayers();
 		this.isOnline = isOnline;
+		
+		return this;
+	}
+	
+	public String getServerName() {
+		return this.serverName;
+	}
+	
+	public void setServerName(String name) {
+		this.serverName = name;
 	}
 	
 	public String getMotd() {
@@ -41,6 +53,10 @@ public class ServerInfo {
 	
 	public boolean isOnline() {
 		return this.isOnline;
+	}
+	
+	public boolean isFull() {
+		return getMaxPlayers() == getOnlinePlayers();
 	}
 	
 	public boolean equals(ServerInfo info) {

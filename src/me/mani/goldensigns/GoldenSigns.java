@@ -3,21 +3,21 @@ package me.mani.goldensigns;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import me.mani.goldensigns.config.ConfigManager;
-import me.mani.goldensigns.listener.PlayerInteractEntityListener;
-import me.mani.goldensigns.ping.ServerInfo;
+import me.mani.goldensigns.listener.SignCreateListener;
+import me.mani.goldensigns.listener.SignDestroyListener;
 
 import org.bukkit.Bukkit;
+import org.bukkit.block.Sign;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class GoldenSigns extends JavaPlugin {
 	
 	private static GoldenSigns instance;
-	public Logger log = Logger.getLogger("Minecraft");
-	private List<ServerFrame> allFrames = new ArrayList<>();
+	
+	private List<ServerSign> allServerSigns = new ArrayList<>();
 
 	@Override
 	public void onEnable() {
@@ -25,7 +25,8 @@ public class GoldenSigns extends JavaPlugin {
 		// Config
 		
 		ConfigManager cfgMng = new ConfigManager(new File("plugins/ServerFrames/config.yml"));
-		ConfigurationSerialization.registerClass(SaveFrame.class);
+		
+		ConfigurationSerialization.registerClass(SaveSign.class);
 		
 		// BungeeCord
 		
@@ -33,10 +34,16 @@ public class GoldenSigns extends JavaPlugin {
 		
 		// Load Frames
 		
-		this.allFrames = ConfigManager.loadAll(new File("plugins/ServerFrames/frames.yml"));
+		this.allServerSigns = ConfigManager.loadAll(new File("plugins/ServerFrames/frames.yml"));
+		
+		// Listener
+		
+		Bukkit.getPluginManager().registerEvents(new SignCreateListener(this), this);	
+		Bukkit.getPluginManager().registerEvents(new SignDestroyListener(this), this);
+		
+		// Static Zugriff
 		
 		instance = this;
-		Bukkit.getPluginManager().registerEvents(new PlayerInteractEntityListener(this), this);		
 		
 	}
 	
@@ -45,8 +52,8 @@ public class GoldenSigns extends JavaPlugin {
 		
 		// Save Frames
 		
-		if (allFrames.size() >= 1)
-			ConfigManager.saveAll(new File("plugins/ServerFrames/frames.yml"), allFrames);
+		if (allServerSigns.size() >= 1)
+			ConfigManager.saveAll(new File("plugins/ServerFrames/frames.yml"), allServerSigns);
 		
 	}
 	
@@ -54,22 +61,25 @@ public class GoldenSigns extends JavaPlugin {
 		return instance;
 	}
 	
-	public void addFrame(ServerFrame frame) {
-		this.allFrames.add(frame);
+	public void addServerSign(ServerSign sign) {
+		this.allServerSigns.add(sign);
 		
 	}
 	
-	public void removeFrame(ServerFrame frame) {
-		if (this.allFrames.contains(frame))
-			this.allFrames.remove(frame);
+	public void removeServerSign(ServerSign sign) {
+		if (this.allServerSigns.contains(sign))
+			this.allServerSigns.remove(sign);
 	}
 	
-	public ServerFrame getFrame(ServerInfo info) {
-		for (ServerFrame frame : this.allFrames) {
-			if (frame.getInfo().equals(info))
-				return frame;
+	public boolean isServerSign(Sign sign) {
+		return sign.hasMetadata("ServerSign");
+	}
+	
+	public ServerSign getServerSign(Sign sign) {
+		for (ServerSign serverSign : allServerSigns) {
+			if (serverSign.getSign().equals(sign))
+				return serverSign;
 		}
 		return null;
 	}
-
 }

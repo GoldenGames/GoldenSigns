@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.mani.goldensigns.SaveFrame;
-import me.mani.goldensigns.ServerFrame;
+import me.mani.goldensigns.SaveSign;
+import me.mani.goldensigns.ServerSign;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -24,15 +24,15 @@ public class ConfigManager {
 		}
 	}
 	
-	public static void saveAll(File file, List<ServerFrame> allFrames) {
+	public static void saveAll(File file, List<ServerSign> allSigns) {
 		YamlConfiguration saveCfg = YamlConfiguration.loadConfiguration(file);
 		
-		List<SaveFrame> allSaveFrames = new ArrayList<>();
-		for (ServerFrame frame : allFrames) {
-			allSaveFrames.add(new SaveFrame(frame));	
+		List<SaveSign> allSaveSigns = new ArrayList<>();
+		for (ServerSign sign : allSigns) {
+			allSaveSigns.add(new SaveSign(sign));	
 		}
 		
-		saveCfg.set("save", allSaveFrames);
+		saveCfg.set("save", allSaveSigns);
 		try {
 			saveCfg.save(file);
 		} catch (IOException e) {
@@ -41,18 +41,18 @@ public class ConfigManager {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static List<ServerFrame> loadAll(File file) {
+	public static List<ServerSign> loadAll(File file) {
 		YamlConfiguration saveCfg = YamlConfiguration.loadConfiguration(file);
-		List<ServerFrame> allFrames = new ArrayList<>();
-		List<SaveFrame> allSaveFrames = (List<SaveFrame>) saveCfg.getList("save");
-		if (allSaveFrames == null || allSaveFrames.size() == 0)
+		List<ServerSign> allSigns = new ArrayList<>();
+		List<SaveSign> allSaveSigns = (List<SaveSign>) saveCfg.getList("save");
+		if (allSaveSigns == null || allSaveSigns.size() == 0)
 			return new ArrayList<>();
 		
-		for (SaveFrame saveFrame : allSaveFrames) {
-			allFrames.add(saveFrame.toServerFrame());
+		for (SaveSign saveSign : allSaveSigns) {
+			allSigns.add(saveSign.toServerSign());
 		}
 		
-		return allFrames;
+		return allSigns;
 	}
 	
 	private static void addDefaults() {
