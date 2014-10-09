@@ -13,9 +13,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class ServerFrames extends JavaPlugin {
+public class GoldenSigns extends JavaPlugin {
 	
-	private static ServerFrames instance;
+	private static GoldenSigns instance;
 	public Logger log = Logger.getLogger("Minecraft");
 	private List<ServerFrame> allFrames = new ArrayList<>();
 
@@ -50,7 +50,7 @@ public class ServerFrames extends JavaPlugin {
 		
 	}
 	
-	public static ServerFrames getInstance() {
+	public static GoldenSigns getInstance() {
 		return instance;
 	}
 	
